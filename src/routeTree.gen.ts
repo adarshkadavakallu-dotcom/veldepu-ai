@@ -10,33 +10,80 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AutomationRouteImport } from './routes/automation'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as WebsiteImprovementRouteImport } from './routes/website-improvement'
+import { Route as WebsitesRouteImport } from './routes/websites'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AutomationRoute = AutomationRouteImport.update({
+  id: '/automation',
+  path: '/automation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebsiteImprovementRoute = WebsiteImprovementRouteImport.update({
+  id: '/website-improvement',
+  path: '/website-improvement',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebsitesRoute = WebsitesRouteImport.update({
+  id: '/websites',
+  path: '/websites',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/automation': typeof AutomationRoute
+  '/services': typeof ServicesRoute
+  '/website-improvement': typeof WebsiteImprovementRoute
+  '/websites': typeof WebsitesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/automation': typeof AutomationRoute
+  '/services': typeof ServicesRoute
+  '/website-improvement': typeof WebsiteImprovementRoute
+  '/websites': typeof WebsitesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/automation': typeof AutomationRoute
+  '/services': typeof ServicesRoute
+  '/website-improvement': typeof WebsiteImprovementRoute
+  '/websites': typeof WebsitesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/automation' | '/services' | '/website-improvement' | '/websites'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/automation' | '/services' | '/website-improvement' | '/websites'
+  id:
+    | '__root__'
+    | '/'
+    | '/automation'
+    | '/services'
+    | '/website-improvement'
+    | '/websites'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AutomationRoute: typeof AutomationRoute
+  ServicesRoute: typeof ServicesRoute
+  WebsiteImprovementRoute: typeof WebsiteImprovementRoute
+  WebsitesRoute: typeof WebsitesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +95,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/automation': {
+      id: '/automation'
+      path: '/automation'
+      fullPath: '/automation'
+      preLoaderRoute: typeof AutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/website-improvement': {
+      id: '/website-improvement'
+      path: '/website-improvement'
+      fullPath: '/website-improvement'
+      preLoaderRoute: typeof WebsiteImprovementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/websites': {
+      id: '/websites'
+      path: '/websites'
+      fullPath: '/websites'
+      preLoaderRoute: typeof WebsitesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AutomationRoute: AutomationRoute,
+  ServicesRoute: ServicesRoute,
+  WebsiteImprovementRoute: WebsiteImprovementRoute,
+  WebsitesRoute: WebsitesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
