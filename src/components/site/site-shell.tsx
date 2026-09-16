@@ -39,7 +39,7 @@ export function SiteFooter() {
     <FooterColumn title="Services" items={serviceLinks} />
     <FooterColumn title="Company" items={companyLinks} />
     <div><h2 className="text-sm font-semibold">Start here</h2><p className="mt-4 text-sm leading-6 text-muted-foreground">Have a website or workflow in mind?</p><Link to="/contact" className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Start a Project<ArrowUpRight className="size-4" /></Link></div>
-  </div><div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between"><p>© 2026 Veldepu AI. All rights reserved.</p><p>Frontend experience — no external submissions connected.</p></div></div></footer>;
+  </div><div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between"><p>© 2026 Veldepu AI. All rights reserved.</p><p>Better websites. Smarter automation.</p></div></div></footer>;
 }
 
 function FooterColumn({ title, items }: { title: string; items: readonly { label: string; to: SitePath }[] }) {
