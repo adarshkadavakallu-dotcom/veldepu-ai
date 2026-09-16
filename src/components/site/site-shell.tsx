@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { navItems } from "@/data/site";
 import { cn } from "@/lib/utils";
+import type { SitePath } from "./site-ui";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -41,6 +42,6 @@ export function SiteFooter() {
   </div><div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between"><p>© 2026 Veldepu AI. All rights reserved.</p><p>Frontend experience — no external submissions connected.</p></div></div></footer>;
 }
 
-function FooterColumn({ title, items }: { title: string; items: readonly { label: string; to: string }[] }) {
+function FooterColumn({ title, items }: { title: string; items: readonly { label: string; to: SitePath }[] }) {
   return <div><h2 className="text-sm font-semibold">{title}</h2><ul className="mt-4 space-y-3">{items.map((item) => <li key={item.to}><Link to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-primary">{item.label}</Link></li>)}</ul></div>;
 }

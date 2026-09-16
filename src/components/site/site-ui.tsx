@@ -1,4 +1,4 @@
-import { Link, type LinkProps } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import type { ReactNode } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { faqs } from "@/data/site";
 import { cn } from "@/lib/utils";
 
-type SitePath = LinkProps["to"];
+export type SitePath = "/" | "/services" | "/websites" | "/website-improvement" | "/automation" | "/process" | "/work" | "/about" | "/contact" | "/audit" | "/404";
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return <div className="mb-5 inline-flex items-center gap-2 text-xs font-semibold uppercase text-primary"><Sparkles className="size-3.5" />{children}</div>;
