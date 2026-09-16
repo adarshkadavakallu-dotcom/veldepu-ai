@@ -48,7 +48,7 @@ export const faqs = [
   { question: "Can you improve an existing website?", answer: "Yes. We can improve its visual design, mobile experience, structure, usability, performance, and conversion journey without changing what already works." },
   { question: "Can you automate repetitive business tasks?", answer: "Yes. We map the current workflow first, then identify practical opportunities for lead handling, notifications, data processing, and AI-assisted tasks." },
   { question: "Do you work with small businesses?", answer: "Yes. Our approach is designed to be clear and practical for growing businesses as well as established teams." },
-  { question: "How do I start a project?", answer: "Share your goals through the project inquiry form. The current form is a frontend demonstration and prepares your information for a future connected submission flow." },
+  { question: "How do I start a project?", answer: "Share your goals through the project inquiry form. We'll review the details and respond with a tailored plan and next steps." },
 ] as const;
 
 export const processSteps = [
@@ -78,11 +78,11 @@ export const projects = [
   },
   {
     name: "Relay Operations",
-    label: "Demo Project",
+    label: "Sample Project",
     category: "Business Automation",
-    description: "A demonstration workflow for organizing incoming requests and routing the right information to a team.",
+    description: "A sample workflow for organizing incoming requests and routing the right information to a team.",
     technologies: ["Workflow Design", "AI Processing", "Notifications"],
-    challenge: "The demo maps a fragmented inquiry process with repeated manual sorting and delayed internal follow-up.",
+    challenge: "The sample maps a fragmented inquiry process with repeated manual sorting and delayed internal follow-up.",
     outcome: "A proposed workflow that classifies requests and prepares clear next actions while keeping people in control.",
   },
   {
