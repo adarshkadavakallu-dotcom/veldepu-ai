@@ -15,6 +15,15 @@ import { SiteFooter, SiteHeader } from "@/components/site/site-shell";
 import { Button } from "@/components/ui/button";
 
 function NotFoundComponent() {
+  useEffect(() => {
+    document.title = "Page Not Found — Veldepu AI";
+    const robots = document.createElement("meta");
+    robots.name = "robots";
+    robots.content = "noindex";
+    document.head.appendChild(robots);
+    return () => { robots.remove(); };
+  }, []);
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
