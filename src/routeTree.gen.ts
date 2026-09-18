@@ -19,7 +19,8 @@ import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as WebsiteImprovementRouteImport } from './routes/website-improvement'
 import { Route as WebsitesRouteImport } from './routes/websites'
-import { Route as WorkRouteImport } from './routes/work'
+import { Route as WorkIndexRouteImport } from './routes/work.index'
+import { Route as WorkProjectIdRouteImport } from './routes/work.$projectId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -71,9 +72,14 @@ const WebsitesRoute = WebsitesRouteImport.update({
   path: '/websites',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkRoute = WorkRouteImport.update({
-  id: '/work',
-  path: '/work',
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/work/',
+  path: '/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkProjectIdRoute = WorkProjectIdRouteImport.update({
+  id: '/work/$projectId',
+  path: '/work/$projectId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -88,7 +94,8 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/website-improvement': typeof WebsiteImprovementRoute
   '/websites': typeof WebsitesRoute
-  '/work': typeof WorkRoute
+  '/work/$projectId': typeof WorkProjectIdRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,7 +108,8 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/website-improvement': typeof WebsiteImprovementRoute
   '/websites': typeof WebsitesRoute
-  '/work': typeof WorkRoute
+  '/work/$projectId': typeof WorkProjectIdRoute
+  '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -115,7 +123,8 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/website-improvement': typeof WebsiteImprovementRoute
   '/websites': typeof WebsitesRoute
-  '/work': typeof WorkRoute
+  '/work/$projectId': typeof WorkProjectIdRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -130,7 +139,8 @@ export interface FileRouteTypes {
     | '/services'
     | '/website-improvement'
     | '/websites'
-    | '/work'
+    | '/work/$projectId'
+    | '/work/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/website-improvement'
     | '/websites'
+    | '/work/$projectId'
     | '/work'
   id:
     | '__root__'
@@ -156,7 +167,8 @@ export interface FileRouteTypes {
     | '/services'
     | '/website-improvement'
     | '/websites'
-    | '/work'
+    | '/work/$projectId'
+    | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -170,7 +182,8 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   WebsiteImprovementRoute: typeof WebsiteImprovementRoute
   WebsitesRoute: typeof WebsitesRoute
-  WorkRoute: typeof WorkRoute
+  WorkProjectIdRoute: typeof WorkProjectIdRoute
+  WorkIndexRoute: typeof WorkIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -245,11 +258,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WebsitesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work': {
-      id: '/work'
+    '/work/': {
+      id: '/work/'
       path: '/work'
-      fullPath: '/work'
-      preLoaderRoute: typeof WorkRouteImport
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$projectId': {
+      id: '/work/$projectId'
+      path: '/work/$projectId'
+      fullPath: '/work/$projectId'
+      preLoaderRoute: typeof WorkProjectIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -266,7 +286,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   WebsiteImprovementRoute: WebsiteImprovementRoute,
   WebsitesRoute: WebsitesRoute,
-  WorkRoute: WorkRoute,
+  WorkProjectIdRoute: WorkProjectIdRoute,
+  WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

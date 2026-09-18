@@ -3,7 +3,7 @@ import { ArrowDown, ArrowRight, CircleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CTASection, FAQSection, SectionHeading } from "@/components/site/site-ui";
 import { InterfaceVisual, ProcessTimeline, ServicesGrid } from "@/components/site/content";
-import { ProjectGrid } from "@/components/site/project-dialog";
+import { FeaturedProjects } from "@/components/portfolio/featured-projects";
 import { values } from "@/data/site";
 
 export const Route = createFileRoute("/")({ head:()=>({ meta:[{title:"Veldepu AI — Better Websites. Smarter Automation."},{name:"description",content:"Veldepu AI creates modern websites and practical business automation that helps businesses work smarter."},{property:"og:title",content:"Veldepu AI — Better Websites. Smarter Automation."},{property:"og:description",content:"Modern websites and practical business automation built for growth."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}] }), component: Home });
@@ -13,5 +13,5 @@ function Home(){ const problems=["Outdated websites","Poor online presence","Man
 <section className="section-space"><div className="site-container"><SectionHeading eyebrow="The challenge" title="Good businesses lose momentum to avoidable friction." description="When the website and day-to-day systems fall behind, customers feel it—and teams spend time compensating."/><div className="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">{problems.map((problem)=><div className="flex items-center gap-3 bg-card p-5" key={problem}><CircleAlert className="size-5 text-primary"/><span className="font-medium">{problem}</span></div>)}</div><Button asChild className="mt-8" variant="outline"><Link to="/services">See How We Help<ArrowRight/></Link></Button></div></section>
 <section className="section-space border-y border-border bg-surface-soft"><div className="site-container"><SectionHeading eyebrow="What we do" title="Three focused services. One clear objective." description="Create a stronger digital experience and make the work behind it more efficient."/><div className="mt-12"><ServicesGrid/></div></div></section>
 <section className="section-space"><div className="site-container"><SectionHeading eyebrow="Our process" title="A clear route from idea to launch." description="Simple stages keep decisions focused and progress visible."/><div className="mt-10"><ProcessTimeline compact/></div><Button asChild variant="outline" className="mt-8"><Link to="/process">View Our Process<ArrowRight/></Link></Button></div></section>
-<section className="section-space border-t border-border bg-surface-soft"><div className="site-container"><SectionHeading eyebrow="Selected concepts" title="Thinking made visible." description="Exploratory concept work that shows our approach. These are not presented as client projects."/><div className="mt-10"><ProjectGrid limit={3}/></div></div></section><FAQSection/><CTASection/>
+<FeaturedProjects limit={3}/><FAQSection/><CTASection/>
 </>}
