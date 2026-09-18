@@ -13,7 +13,12 @@ import { projectCategories, type Project } from "@/lib/projects";
  * pass a persistence function without changing this component.
  */
 
-export type ProjectDraft = Omit<Project, "id" | "createdAt"> & { clientPermission: boolean };
+export type ProjectDraft = Omit<Project, "id" | "createdAt" | "clientName" | "imageUrl" | "liveUrl" | "completedAt"> & {
+  clientName?: string | undefined;
+  imageUrl?: string | undefined;
+  liveUrl?: string | undefined;
+  completedAt?: string | undefined;
+};
 export type ProjectFormResult = { ok: true } | { ok: false; message: string };
 
 type Errors = Record<string, string>;

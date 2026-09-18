@@ -66,32 +66,4 @@ export const values = [
   { title: "Built for Growth", text: "Foundations that can evolve with you.", icon: Gauge },
 ] as const;
 
-export const projects = [
-  {
-    name: "Northstar Advisory",
-    label: "Concept Project",
-    category: "Business Website",
-    description: "A focused website concept for a growing advisory firm, designed around trust, clarity, and qualified inquiries.",
-    technologies: ["React", "Responsive UI", "Accessible Forms"],
-    challenge: "The concept explores how a complex professional service can be explained clearly without overwhelming potential clients.",
-    outcome: "A calm, structured experience that guides visitors from understanding the offer to starting a conversation.",
-  },
-  {
-    name: "Relay Operations",
-    label: "Sample Project",
-    category: "Business Automation",
-    description: "A sample workflow for organizing incoming requests and routing the right information to a team.",
-    technologies: ["Workflow Design", "AI Processing", "Notifications"],
-    challenge: "The sample maps a fragmented inquiry process with repeated manual sorting and delayed internal follow-up.",
-    outcome: "A proposed workflow that classifies requests and prepares clear next actions while keeping people in control.",
-  },
-  {
-    name: "Mira Health Studio",
-    label: "Concept Project",
-    category: "Website Redesign",
-    description: "A mobile-first redesign concept that simplifies service discovery and makes contact pathways easier to find.",
-    technologies: ["UX Audit", "Mobile UI", "Content Structure"],
-    challenge: "The original concept had dense navigation, buried services, and inconsistent calls to action across devices.",
-    outcome: "A clearer hierarchy and an easier mobile journey from service discovery to inquiry.",
-  },
-] as const;
+// Portfolio project data lives in src/lib/projects.ts (the project data layer).
