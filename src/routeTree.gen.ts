@@ -11,14 +11,18 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuditRouteImport } from './routes/audit'
 import { Route as AutomationRouteImport } from './routes/automation'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as WebsiteImprovementRouteImport } from './routes/website-improvement'
 import { Route as WebsitesRouteImport } from './routes/websites'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
 import { Route as WorkProjectIdRouteImport } from './routes/work.$projectId'
 
@@ -30,6 +34,10 @@ const IndexRoute = IndexRouteImport.update({
 const R404Route = R404RouteImport.update({
   id: '/404',
   path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -52,6 +60,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProcessRoute = ProcessRouteImport.update({
   id: '/process',
   path: '/process',
@@ -60,6 +73,11 @@ const ProcessRoute = ProcessRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WebsiteImprovementRoute = WebsiteImprovementRouteImport.update({
@@ -71,6 +89,11 @@ const WebsitesRoute = WebsitesRouteImport.update({
   id: '/websites',
   path: '/websites',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const WorkIndexRoute = WorkIndexRouteImport.update({
   id: '/work/',
@@ -90,10 +113,13 @@ export interface FileRoutesByFullPath {
   '/audit': typeof AuditRoute
   '/automation': typeof AutomationRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
+  '/signup': typeof SignupRoute
   '/website-improvement': typeof WebsiteImprovementRoute
   '/websites': typeof WebsitesRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/work/$projectId': typeof WorkProjectIdRoute
   '/work/': typeof WorkIndexRoute
 }
@@ -104,25 +130,32 @@ export interface FileRoutesByTo {
   '/audit': typeof AuditRoute
   '/automation': typeof AutomationRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
+  '/signup': typeof SignupRoute
   '/website-improvement': typeof WebsiteImprovementRoute
   '/websites': typeof WebsitesRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/work/$projectId': typeof WorkProjectIdRoute
   '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/audit': typeof AuditRoute
   '/automation': typeof AutomationRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
+  '/signup': typeof SignupRoute
   '/website-improvement': typeof WebsiteImprovementRoute
   '/websites': typeof WebsitesRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/work/$projectId': typeof WorkProjectIdRoute
   '/work/': typeof WorkIndexRoute
 }
@@ -135,10 +168,13 @@ export interface FileRouteTypes {
     | '/audit'
     | '/automation'
     | '/contact'
+    | '/login'
     | '/process'
     | '/services'
+    | '/signup'
     | '/website-improvement'
     | '/websites'
+    | '/dashboard'
     | '/work/$projectId'
     | '/work/'
   fileRoutesByTo: FileRoutesByTo
@@ -149,37 +185,47 @@ export interface FileRouteTypes {
     | '/audit'
     | '/automation'
     | '/contact'
+    | '/login'
     | '/process'
     | '/services'
+    | '/signup'
     | '/website-improvement'
     | '/websites'
+    | '/dashboard'
     | '/work/$projectId'
     | '/work'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/404'
     | '/about'
     | '/audit'
     | '/automation'
     | '/contact'
+    | '/login'
     | '/process'
     | '/services'
+    | '/signup'
     | '/website-improvement'
     | '/websites'
+    | '/_authenticated/dashboard'
     | '/work/$projectId'
     | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   R404Route: typeof R404Route
   AboutRoute: typeof AboutRoute
   AuditRoute: typeof AuditRoute
   AutomationRoute: typeof AutomationRoute
   ContactRoute: typeof ContactRoute
+  LoginRoute: typeof LoginRoute
   ProcessRoute: typeof ProcessRoute
   ServicesRoute: typeof ServicesRoute
+  SignupRoute: typeof SignupRoute
   WebsiteImprovementRoute: typeof WebsiteImprovementRoute
   WebsitesRoute: typeof WebsitesRoute
   WorkProjectIdRoute: typeof WorkProjectIdRoute
@@ -200,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/404'
       fullPath: '/404'
       preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -230,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/process': {
       id: '/process'
       path: '/process'
@@ -242,6 +302,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/website-improvement': {
@@ -257,6 +324,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/websites'
       preLoaderRoute: typeof WebsitesRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/work/': {
       id: '/work/'
@@ -275,15 +349,29 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   R404Route: R404Route,
   AboutRoute: AboutRoute,
   AuditRoute: AuditRoute,
   AutomationRoute: AutomationRoute,
   ContactRoute: ContactRoute,
+  LoginRoute: LoginRoute,
   ProcessRoute: ProcessRoute,
   ServicesRoute: ServicesRoute,
+  SignupRoute: SignupRoute,
   WebsiteImprovementRoute: WebsiteImprovementRoute,
   WebsitesRoute: WebsitesRoute,
   WorkProjectIdRoute: WorkProjectIdRoute,
