@@ -35,7 +35,13 @@ export function SiteHeader() {
     <aside id="mobile-navigation" aria-label="Mobile navigation" aria-hidden={!open} className={cn("fixed right-0 top-0 z-50 h-dvh w-[min(90vw,390px)] flex-col border-l border-border bg-background p-5 shadow-2xl transition-transform duration-300 xl:hidden", open ? "flex translate-x-0" : "hidden translate-x-full")}>
       <div className="flex items-center justify-between"><span className="font-display text-lg font-bold">VELDEPU <span className="text-primary">AI</span></span><Button variant="ghost" size="icon-lg" aria-label="Close navigation menu" onClick={() => setOpen(false)}><X /></Button></div>
       <nav className="mt-8 flex flex-1 flex-col gap-1">{navItems.map((item) => <Link key={item.to} to={item.to} tabIndex={open ? 0 : -1} activeOptions={{ exact: item.to === "/" }} onClick={() => setOpen(false)} className="rounded-md px-4 py-3 text-base font-medium text-muted-foreground hover:bg-accent hover:text-foreground" activeProps={{ className: "bg-accent text-foreground" }}>{item.label}</Link>)}</nav>
-      <Button asChild size="lg" className="w-full"><Link to="/contact" tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>Start a Project<ArrowUpRight /></Link></Button>
+      <div className="grid gap-2">
+        {user ? <>
+          <Button asChild size="lg" variant="outline" className="w-full"><Link to="/dashboard" tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>Dashboard</Link></Button>
+          <SignOutButton />
+        </> : <Button asChild size="lg" variant="outline" className="w-full"><Link to="/login" tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>Sign In</Link></Button>}
+        <Button asChild size="lg" className="w-full"><Link to="/contact" tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>Start a Project<ArrowUpRight /></Link></Button>
+      </div>
     </aside>
   </header>;
 }
