@@ -111,7 +111,7 @@ export function AuthCard({ mode }: { mode: Mode }) {
   );
 }
 
-function Field({ id, label, error, children }: { id: string; label: string; error?: string; children: React.ReactNode }) {
+function Field({ id, label, error, children }: { id: string; label: string; error: string | undefined; children: React.ReactNode }) {
   return (
     <div className="grid gap-2">
       <Label htmlFor={id}>{label}</Label>
