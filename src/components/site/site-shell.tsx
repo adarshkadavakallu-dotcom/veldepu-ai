@@ -21,18 +21,18 @@ export function SiteHeader() {
   return <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur-xl">
     <div className="site-container flex h-18 items-center justify-between gap-6">
       <Link to="/" className="group inline-flex items-center gap-2 font-display text-lg font-bold" aria-label="Veldepu AI home"><span className="inline-flex size-8 items-center justify-center rounded-md bg-primary text-sm text-primary-foreground transition-transform group-hover:rotate-3">V</span>VELDEPU <span className="text-primary">AI</span></Link>
-      <nav aria-label="Primary navigation" className="hidden items-center gap-1 xl:flex">{navItems.map((item) => <Link key={item.to} to={item.to} activeOptions={{ exact: item.to === "/" }} className="rounded-md px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground" activeProps={{ className: "bg-accent text-foreground" }}>{item.label}</Link>)}</nav>
-      <div className="hidden items-center gap-2 xl:flex">
+      <nav aria-label="Primary navigation" className="hidden items-center gap-1 2xl:flex">{navItems.map((item) => <Link key={item.to} to={item.to} activeOptions={{ exact: item.to === "/" }} className="rounded-md px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground" activeProps={{ className: "bg-accent text-foreground" }}>{item.label}</Link>)}</nav>
+      <div className="hidden items-center gap-2 2xl:flex">
         {user ? <>
           <Button asChild variant="ghost"><Link to="/dashboard">Dashboard</Link></Button>
           <SignOutButton variant="ghost" />
         </> : <Button asChild variant="ghost"><Link to="/login">Sign In</Link></Button>}
         <Button asChild><Link to="/contact">Start a Project<ArrowUpRight /></Link></Button>
       </div>
-      <Button variant="ghost" size="icon-lg" className="xl:hidden" aria-label="Open navigation menu" aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(true)}><Menu /></Button>
+      <Button variant="ghost" size="icon-lg" className="2xl:hidden" aria-label="Open navigation menu" aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(true)}><Menu /></Button>
     </div>
-    <div className={cn("fixed inset-0 z-50 bg-overlay transition-opacity duration-200 xl:hidden", open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0")} onClick={() => setOpen(false)} aria-hidden="true" />
-    <aside id="mobile-navigation" aria-label="Mobile navigation" aria-hidden={!open} className={cn("fixed right-0 top-0 z-50 h-dvh w-[min(90vw,390px)] flex-col border-l border-border bg-background p-5 shadow-2xl transition-transform duration-300 xl:hidden", open ? "flex translate-x-0" : "hidden translate-x-full")}>
+    <div className={cn("fixed inset-0 z-50 bg-overlay transition-opacity duration-200 2xl:hidden", open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0")} onClick={() => setOpen(false)} aria-hidden="true" />
+    <aside id="mobile-navigation" aria-label="Mobile navigation" aria-hidden={!open} className={cn("fixed right-0 top-0 z-50 h-dvh w-[min(90vw,390px)] flex-col border-l border-border bg-background p-5 shadow-2xl transition-transform duration-300 2xl:hidden", open ? "flex translate-x-0" : "hidden translate-x-full")}>
       <div className="flex items-center justify-between"><span className="font-display text-lg font-bold">VELDEPU <span className="text-primary">AI</span></span><Button variant="ghost" size="icon-lg" aria-label="Close navigation menu" onClick={() => setOpen(false)}><X /></Button></div>
       <nav className="mt-8 flex flex-1 flex-col gap-1">{navItems.map((item) => <Link key={item.to} to={item.to} tabIndex={open ? 0 : -1} activeOptions={{ exact: item.to === "/" }} onClick={() => setOpen(false)} className="rounded-md px-4 py-3 text-base font-medium text-muted-foreground hover:bg-accent hover:text-foreground" activeProps={{ className: "bg-accent text-foreground" }}>{item.label}</Link>)}</nav>
       <div className="grid gap-2">
