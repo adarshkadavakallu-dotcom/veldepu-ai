@@ -5,7 +5,7 @@
 export type ChatResult = { ok: true; reply: string } | { ok: false; message: string };
 
 export async function sendChatMessage(prompt: string): Promise<ChatResult> {
-  const baseUrl = import.meta.env.VITE_API_URL as string | undefined;
+  const baseUrl = import.meta.env["VITE_API_URL"] as string | undefined;
   if (!baseUrl) {
     return { ok: false, message: "Chat isn't configured yet. Please try again later." };
   }
