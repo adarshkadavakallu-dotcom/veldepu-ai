@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, LayoutGrid, MessageSquare, Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@/components/auth/sign-out-button";
+import { ChatPanel } from "@/components/chat/chat-panel";
 import { useSessionUser } from "@/lib/auth";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -43,6 +44,10 @@ function Dashboard() {
           <DashboardCard icon={MessageSquare} title="Start a project" text="Share your goals and requirements." to="/contact" cta="Open project form" />
           <DashboardCard icon={LayoutGrid} title="Our work" text="See recent websites and automation work." to="/work" cta="View work" />
           <DashboardCard icon={Workflow} title="Website review" text="Request a review of your current website." to="/audit" cta="Request review" />
+        </div>
+
+        <div className="mt-12">
+          <ChatPanel />
         </div>
       </div>
     </section>
