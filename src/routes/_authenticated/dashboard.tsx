@@ -29,7 +29,7 @@ function Dashboard() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase text-primary">Dashboard</p>
-            <h1 className="font-display text-3xl font-semibold leading-tight sm:text-4xl">
+            <h1 className="font-display text-3xl font-semibold leading-tight break-words sm:text-4xl">
               Welcome, {name}
             </h1>
             <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">
