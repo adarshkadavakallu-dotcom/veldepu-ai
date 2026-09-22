@@ -5,7 +5,7 @@
  * single function can be swapped for a server function / API call
  * (Frontend -> API -> Backend -> Database) without touching any component.
  */
-
+import { supabase } from "@/integrations/supabase/client";
 export type EnquiryKind = "contact" | "audit";
 
 export type EnquiryPayload = {
@@ -21,11 +21,31 @@ export function buildEnquiryPayload(kind: EnquiryKind, data: FormData): EnquiryP
   for (const [key, value] of data.entries()) fields[key] = String(value).trim();
   return { kind, submittedAt: new Date().toISOString(), fields };
 }
-
 export async function submitEnquiry(payload: EnquiryPayload): Promise<EnquiryResult> {
-  await new Promise((resolve) => setTimeout(resolve, 700));
-  if (!payload.fields["email"]) {
-    return { ok: false, message: "We could not send your request. Please check your details and try again." };
+  try {
+    const { error } = await supabase
+      .from("enquiries")
+      .insert({
+        kind: payload.kind,
+        fields: payload.fields,
+      });
+
+  if (error) {
+  console.error("Enquiry insert error:", error);
+  return {
+    ok: false,
+    message: error.message,
+         };
+            }
+
+    return {
+      ok: true,
+      reference: `VLD-${payload.submittedAt.slice(2, 10).replace(/-/g, "")}`,
+    };
+  } catch {
+    return {
+      ok: false,
+      message: "We could not send your request. Please try again.",
+    };
   }
-  return { ok: true, reference: `VLD-${payload.submittedAt.slice(2, 10).replace(/-/g, "")}` };
 }
