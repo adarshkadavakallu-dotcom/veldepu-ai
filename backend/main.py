@@ -109,6 +109,5 @@ User's question:
 
     except Exception as e:
         return {
-            "reply": "Sorry, I couldn't process that request.",
-            "error": str(e)
-        }
+        "reply": f"Backend error: {str(e)}"
+    }
