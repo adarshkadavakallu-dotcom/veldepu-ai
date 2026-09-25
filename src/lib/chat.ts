@@ -24,7 +24,10 @@ export async function sendChatMessage(prompt: string): Promise<ChatResult> {
       return { ok: false, message: "The assistant sent an empty response. Please try again." };
     }
     return { ok: true, reply: data.reply };
-  } catch {
-    return { ok: false, message: "Couldn't reach the assistant. Check your connection and try again." };
-  }
-}
+  } catch (error) {
+  console.error("Chat request failed:", error);
+  return {
+    ok: false,
+    message: error instanceof Error ? error.message : "Chat request failed",
+  };
+}     }
