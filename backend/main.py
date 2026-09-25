@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://veldepu-ai.vercel.app"],
+    allow_origins=os.getenv("ALLOWED_ORIGINS", "https://veldepu-ai.vercel.app").split(","),
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
